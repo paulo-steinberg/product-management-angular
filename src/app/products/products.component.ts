@@ -9,7 +9,6 @@ import { IProduct } from './product.interface';
 })
 export class ProductsComponent implements OnInit {
   private _listFilter: string = 'cart';
-  private _productService;
 
   pageTitle: string = 'Products List';
   imgWidth: number = 50;
@@ -18,13 +17,11 @@ export class ProductsComponent implements OnInit {
   filteredProducts: IProduct[];
   products: IProduct[] = [];
 
-  constructor(productService: ProductService) { 
-    this.filteredProducts = this.products;
-    this.listFilter = 'cart';
+  constructor(private productService: ProductService) {
   }
 
   ngOnInit() {
-
+    this.products = this.productService.getProducts();
   }
 
   public get listFilter(): string {
@@ -45,6 +42,7 @@ export class ProductsComponent implements OnInit {
 
   onRatingClicked(message: string): void {
     this.pageTitle = 'Product List: ' + message;
+    this.filteredProducts = this.products;
   }
 
   toggleImage(): void {
