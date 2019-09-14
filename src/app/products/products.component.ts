@@ -1,3 +1,4 @@
+import { ProductService } from './product-service.service';
 import { Component, OnInit } from '@angular/core';
 import { IProduct } from './product.interface';
 
@@ -7,25 +8,32 @@ import { IProduct } from './product.interface';
   styleUrls: ['./products.component.css']
 })
 export class ProductsComponent implements OnInit {
+  private _listFilter: string = 'cart';
+  private _productService;
+
   pageTitle: string = 'Products List';
   imgWidth: number = 50;
   imgMargin: number = 2;
   showImage: boolean = false;
+  filteredProducts: IProduct[];
+  products: IProduct[] = [];
 
-  private _listFilter: string = 'cart';
+  constructor(productService: ProductService) { 
+    this.filteredProducts = this.products;
+    this.listFilter = 'cart';
+  }
+
+  ngOnInit() {
+
+  }
+
   public get listFilter(): string {
     return this._listFilter;
   }
+
   public set listFilter(value: string) {
     this._listFilter = value;
     this.filteredProducts = this.listFilter ? this.performFilter(this.listFilter) : this.products;
-  }
-
-  filteredProducts: IProduct[];
-  products: IProduct[] = [];
-  constructor() { 
-    this.filteredProducts = this.products;
-    this.listFilter = 'cart';
   }
 
   performFilter(filterBy: string): IProduct[] {
@@ -37,10 +45,6 @@ export class ProductsComponent implements OnInit {
 
   onRatingClicked(message: string): void {
     this.pageTitle = 'Product List: ' + message;
-  }
-
-  ngOnInit() {
-
   }
 
   toggleImage(): void {
