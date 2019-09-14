@@ -86,6 +86,10 @@ export class ProductsComponent implements OnInit {
       product.name.toLocaleLowerCase().indexOf(filterBy) !== -1);
   }
 
+  onRatingClicked(message: string): void {
+    this.pageTitle = 'Product List: ' + message;
+  }
+
   ngOnInit() {
 
   }
