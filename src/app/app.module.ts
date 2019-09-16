@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { StarsComponent } from './shared/stars/stars.component';
+import { ProductDetailComponent } from './products/product-detail/product-detail.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { StarsComponent } from './shared/stars/stars.component';
     HomeComponent,
     ProductsComponent,
     ConvertToSpacesPipe,
-    StarsComponent
+    StarsComponent,
+    ProductDetailComponent
   ],
   imports: [
     BrowserModule,
