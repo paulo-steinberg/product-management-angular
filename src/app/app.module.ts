@@ -10,6 +10,7 @@ import { HomeComponent } from './home/home.component';
 import { ProductsComponent } from './products/products.component';
 import { StarsComponent } from './shared/stars/stars.component';
 import { ProductDetailComponent } from './products/product-detail/product-detail.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,14 @@ import { ProductDetailComponent } from './products/product-detail/product-detail
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    RouterModule.forRoot([
+      {path: 'products', component: ProductsComponent}, 
+      {path: 'products/:id', component: ProductDetailComponent},
+      {path: 'welcome', component: HomeComponent},
+      {path: '', redirectTo: 'welcome', pathMatch: 'full'},
+      {path: '**', redirectTo: 'welcome', pathMatch: 'full'}
+    ])
   ],
   providers: [],
   bootstrap: [AppComponent]
